@@ -1,3 +1,9 @@
+/*
+
+MODDED BY IBRAHIM BURHANI V1
+
+*/
+
 #include "../../idlib/precompiled.h"
 #pragma hdrstop
 
@@ -425,13 +431,13 @@ stateResult_t rvWeaponBlaster::State_Fire ( const stateParms_t& parms ) {
 			}
 
 
-	
+			// Modded to Holding Attack acts as a shotgun spread
 			if ( gameLocal.time - fireHeldTime > chargeTime ) {	
-				Attack ( true, 1, spread, 0, 1.0f );
+				Attack ( true, 20, spread, 0, 0.5f );
 				PlayEffect ( "fx_chargedflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames );
 			} else {
-				Attack ( false, 1, spread, 0, 1.0f );
+				Attack ( false, 5, 10, 0, 1.0f );
 				PlayEffect ( "fx_normalflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "fire", parms.blendFrames );
 			}

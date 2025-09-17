@@ -5804,7 +5804,7 @@ void idGameLocal::RadiusDamage( const idVec3 &origin, idEntity *inflictor, idEnt
 				statManager->WeaponHit( (const idActor*)attacker, ent, ((idProjectile*)inflictor)->methodOfDeath, (*hitCount) == 0 );
 				(*hitCount)++;
 			}
-		} 
+		}
 	}
 }
 // RAVEN END

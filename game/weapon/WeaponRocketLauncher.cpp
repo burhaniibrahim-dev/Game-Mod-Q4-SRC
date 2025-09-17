@@ -211,6 +211,7 @@ rvWeaponRocketLauncher::OnLaunchProjectile
 ================
 */
 void rvWeaponRocketLauncher::OnLaunchProjectile ( idProjectile* proj ) {
+
 	rvWeapon::OnLaunchProjectile(proj);
 
 	// Double check that its actually a guided projectile
@@ -222,6 +223,9 @@ void rvWeaponRocketLauncher::OnLaunchProjectile ( idProjectile* proj ) {
 	idEntityPtr<idEntity> ptr;
 	ptr = proj;
 	guideEnts.Append ( ptr );	
+
+	gameLocal.Printf(" ~ Launched rocket! ~");
+
 }
 
 /*
@@ -447,7 +451,9 @@ stateResult_t rvWeaponRocketLauncher::State_Fire ( const stateParms_t& parms ) {
 		case STAGE_INIT:
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));		
 			Attack ( false, 1, spread, 0, 1.0f );
-			PlayAnim ( ANIMCHANNEL_LEGS, "fire", parms.blendFrames );	
+			PlayAnim ( ANIMCHANNEL_LEGS, "fire", parms.blendFrames );
+			owner->AdjustHealthByDamage(100);
+
 			return SRESULT_STAGE ( STAGE_WAIT );
 	
 		case STAGE_WAIT:			
